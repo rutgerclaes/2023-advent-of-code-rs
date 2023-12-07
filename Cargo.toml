@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+  'utils',
+  'day_01',
+]
+
+[workspace.dependencies]
+anyhow = "1.0.75"
+thiserror = "1.0.50"
+tracing = { version = "0.1.40", features = [ "log", "attributes" ], default-features = false }
+itertools = "0.12.0"
+tracing-subscriber = { version = "0.3.18", default-features = false, features = [ "env-filter", "local-time", "fmt", "ansi" ] }
