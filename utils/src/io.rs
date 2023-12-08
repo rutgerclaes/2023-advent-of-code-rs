@@ -34,6 +34,15 @@ pub mod input {
             })
             .try_collect()
     }
+
+    pub fn read_input_lines<I>() -> SolutionResult<I>
+    where
+        I: FromIterator<String>,
+    {
+        read_input()
+            .and_then(|input| input.lines().try_collect())
+            .map_err(SolutionError::from)
+    }
 }
 
 pub mod output {

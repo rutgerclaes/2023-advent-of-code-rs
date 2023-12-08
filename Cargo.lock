@@ -167,6 +167,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_03"
+version = "0.1.0"
+dependencies = [
+ "ansi_term",
+ "itertools",
+ "utils",
+]
+
+[[package]]
 name = "deranged"
 version = "0.3.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"

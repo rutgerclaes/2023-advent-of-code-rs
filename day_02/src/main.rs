@@ -123,7 +123,7 @@ impl FromStr for Cubes {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let colors: Vec<(&str, usize)> = s
-            .split(",")
+            .split(',')
             .map(|e| e.trim())
             .filter(|e| !e.is_empty())
             .map(|string| {

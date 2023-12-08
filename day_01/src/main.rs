@@ -1,14 +1,10 @@
 use itertools::Itertools;
-use std::io::BufRead;
 use std::iter::Sum;
-use utils::io::input::read_input;
-use utils::io::output::{setup_logging, show_part_one, show_part_two};
+use utils::prelude::*;
 
 fn main() {
     setup_logging();
-    let input: Vec<String> = read_input()
-        .and_then(|input| input.lines().try_collect())
-        .expect("Input could not be read");
+    let input: Vec<String> = read_input_lines().expect("Input could not be read");
 
     let part_one = part_one(&input);
     show_part_one(part_one);
