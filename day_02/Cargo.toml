@@ -1,14 +1,14 @@
 [package]
-name = "utils"
+name = "day_02"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tracing = { workspace = true }
-tracing-subscriber = { workspace = true }
-ansi_term = "0.12.1"
-tracing-timing = "0.6.0"
-thiserror = { workspace = true }
+anyhow = { workspace = true }
 itertools = { workspace = true }
+tracing = { workspace = true }
+utils = { path = "../utils" }
+regex = { workspace = true }
+once_cell = { workspace = true }

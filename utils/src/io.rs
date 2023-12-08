@@ -1,7 +1,13 @@
 pub mod input {
+    use io::BufRead;
+    use itertools::Itertools;
     use std::env;
     use std::fs::File;
     use std::io::{self, stdin, BufReader, Read};
+    use std::str::FromStr;
+
+    use crate::prelude::{SolutionError, SolutionResult};
+
     pub fn read_input() -> io::Result<BufReader<Box<dyn Read>>> {
         if let Some(path) = env::args().nth(1) {
             tracing::debug!(file = path, "reading input");
@@ -12,6 +18,21 @@ pub mod input {
             let stdin = stdin();
             Ok(BufReader::new(Box::new(stdin.lock()) as Box<dyn Read>))
         }
+    }
+
+    pub fn parse_input_lines<T, E, I>() -> SolutionResult<I>
+    where
+        T: FromStr<Err = E>,
+        E: Into<SolutionError>,
+        I: FromIterator<T>,
+    {
+        let input = read_input().map(|input| input.lines())?;
+        input
+            .map::<SolutionResult<T>, _>(|l| {
+                l.map_err(SolutionError::from)
+                    .and_then(|l| l.parse().map_err(|e: E| e.into()))
+            })
+            .try_collect()
     }
 }
 

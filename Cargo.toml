@@ -3,6 +3,7 @@ resolver = "2"
 members = [
   'utils',
   'day_01',
+  'day_02',
 ]
 
 [workspace.dependencies]
@@ -11,3 +12,5 @@ thiserror = "1.0.50"
 tracing = { version = "0.1.40", features = [ "log", "attributes" ], default-features = false }
 itertools = "0.12.0"
 tracing-subscriber = { version = "0.3.18", default-features = false, features = [ "env-filter", "local-time", "fmt", "ansi" ] }
+regex = "1.10.2"
+once_cell = "1.19.0"
