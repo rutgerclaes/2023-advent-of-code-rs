@@ -19,15 +19,16 @@ pub mod output {
     use std::fmt::Display;
 
     use ansi_term::{Color::Green, Style};
-    use tracing_subscriber::{filter::LevelFilter, EnvFilter};
+    use tracing_subscriber::{filter::LevelFilter, fmt::format::FmtSpan, EnvFilter};
 
     pub fn setup_logging() {
         let filter = EnvFilter::builder()
             .with_default_directive(LevelFilter::ERROR.into())
             .from_env_lossy();
         tracing_subscriber::fmt()
+            .with_span_events(FmtSpan::CLOSE)
             .with_writer(std::io::stderr)
-            .pretty()
+            .compact()
             .with_env_filter(filter)
             .init();
     }

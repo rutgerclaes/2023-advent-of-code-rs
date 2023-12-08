@@ -1,26 +1,28 @@
-use anyhow::Result;
 use itertools::Itertools;
 use std::io::BufRead;
 use std::iter::Sum;
 use utils::io::input::read_input;
 use utils::io::output::{setup_logging, show_part_one, show_part_two};
 
-fn main() -> Result<()> {
+fn main() {
     setup_logging();
-    let input: Vec<String> = read_input()?.lines().try_collect()?;
+    let input: Vec<String> = read_input()
+        .and_then(|input| input.lines().try_collect())
+        .expect("Input could not be read");
 
     let part_one = part_one(&input);
     show_part_one(part_one);
 
     let part_two = part_two(&input);
     show_part_two(part_two);
-    Ok(())
 }
 
+#[tracing::instrument(level = "info", ret(), skip_all)]
 fn part_one(input: &[String]) -> u32 {
     solve(input, parse_line)
 }
 
+#[tracing::instrument(level = "info", ret(), skip_all)]
 fn part_two(input: &[String]) -> u32 {
     solve(input, parse_line_with_words)
 }
@@ -33,7 +35,7 @@ where
     input.iter().filter_map(|l| m(l)).sum()
 }
 
-#[tracing::instrument(level = "trace", ret())]
+#[tracing::instrument(level = "debug", ret())]
 fn parse_line(input: &str) -> Option<u32> {
     input
         .chars()
@@ -49,7 +51,7 @@ const NUMBERS: [&str; 9] = [
     "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
 ];
 
-#[tracing::instrument(level = "trace", ret())]
+#[tracing::instrument(level = "debug", ret())]
 fn parse_line_with_words(input: &str) -> Option<u32> {
     fn inner(input: &str, start: Option<u32>, end: Option<u32>) -> Option<u32> {
         if input.is_empty() {
