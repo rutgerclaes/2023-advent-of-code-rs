@@ -12,3 +12,4 @@ ansi_term = { workspace = true }
 tracing-timing = "0.6.0"
 thiserror = { workspace = true }
 itertools = { workspace = true }
+regex = { workspace = true }
