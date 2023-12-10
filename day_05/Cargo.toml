@@ -1,0 +1,12 @@
+[package]
+name = "day_05"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+utils = { path = "../utils" }
+tracing = {workspace = true}
+itertools = { workspace = true}
+derive_more = { version = "0.99.17", default-features = false, features = [ "deref", "from", "into" ] }

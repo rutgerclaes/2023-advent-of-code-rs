@@ -46,9 +46,12 @@ pub mod input {
 }
 
 pub mod output {
-    use std::fmt::Display;
+    use std::{error::Error, fmt::Display};
 
-    use ansi_term::{Color::Green, Style};
+    use ansi_term::{
+        Color::{Green, Red},
+        Style,
+    };
     use tracing_subscriber::{filter::LevelFilter, fmt::format::FmtSpan, EnvFilter};
 
     pub fn setup_logging() {
@@ -71,11 +74,33 @@ pub mod output {
         );
     }
 
+    pub fn show_result<T: Display, E: Display>(part: &'static str, value: Result<T, E>) {
+        match value {
+            Ok(result) => show(part, result),
+            Err(e) => {
+                let msg = Red.paint(format!(
+                    "No solution found for {}: {}",
+                    Style::new().bold().paint(part),
+                    e
+                ));
+                println!("{msg}");
+            }
+        }
+    }
+
     pub fn show_part_one<T: Display>(value: T) {
         show("part 1", value)
     }
 
     pub fn show_part_two<T: Display>(value: T) {
         show("part 2", value)
+    }
+
+    pub fn show_result_part_one<T: Display, E: Display>(value: Result<T, E>) {
+        show_result("part 1", value)
+    }
+
+    pub fn show_result_part_two<T: Display, E: Display>(value: Result<T, E>) {
+        show_result("part 2", value)
     }
 }
