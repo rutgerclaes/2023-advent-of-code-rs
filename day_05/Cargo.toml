@@ -9,4 +9,5 @@ edition = "2021"
 utils = { path = "../utils" }
 tracing = {workspace = true}
 itertools = { workspace = true}
+im = { workspace = true }
 derive_more = { version = "0.99.17", default-features = false, features = [ "deref", "from", "into" ] }

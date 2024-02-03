@@ -46,7 +46,7 @@ pub mod input {
 }
 
 pub mod output {
-    use std::{error::Error, fmt::Display};
+    use std::fmt::Display;
 
     use ansi_term::{
         Color::{Green, Red},
